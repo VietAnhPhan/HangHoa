@@ -13,13 +13,16 @@ import java.sql.Date;
  */
 public class HoaDon {
     private String MaHD;
+    private String SoHD;
+    private Date NgayBan;
+    private String TaiKhoan;
+    private String LyDo;
     private float ThueSuat;
     private Date NgayThanhToan;
     private String MSCH;
     private String MSKH;
     private String Soseri;
-    private int type;
-    private Date NgayTao;
+    private float TongTien;
 
     /**
      * @return the MaHD
@@ -33,6 +36,62 @@ public class HoaDon {
      */
     public void setMaHD(String MaHD) {
         this.MaHD = MaHD;
+    }
+
+    /**
+     * @return the SoHD
+     */
+    public String getSoHD() {
+        return SoHD;
+    }
+
+    /**
+     * @param SoHD the SoHD to set
+     */
+    public void setSoHD(String SoHD) {
+        this.SoHD = SoHD;
+    }
+
+    /**
+     * @return the NgayBan
+     */
+    public Date getNgayBan() {
+        return NgayBan;
+    }
+
+    /**
+     * @param NgayBan the NgayBan to set
+     */
+    public void setNgayBan(Date NgayBan) {
+        this.NgayBan = NgayBan;
+    }
+
+    /**
+     * @return the TaiKhoan
+     */
+    public String getTaiKhoan() {
+        return TaiKhoan;
+    }
+
+    /**
+     * @param TaiKhoan the TaiKhoan to set
+     */
+    public void setTaiKhoan(String TaiKhoan) {
+        this.TaiKhoan = TaiKhoan;
+    }
+
+    /**
+     * @return the LyDo
+     */
+    public String getLyDo() {
+        return LyDo;
+    }
+
+    /**
+     * @param LyDo the LyDo to set
+     */
+    public void setLyDo(String LyDo) {
+        this.LyDo = LyDo;
     }
 
     /**
@@ -106,31 +165,18 @@ public class HoaDon {
     }
 
     /**
-     * @return the type
+     * @return the TongTien
      */
-    public int getType() {
-        return type;
+    public float getTongTien() {
+        return TongTien;
     }
 
     /**
-     * @param type the type to set
+     * @param TongTien the TongTien to set
      */
-    public void setType(int type) {
-        this.type = type;
+    public void setTongTien(float TongTien) {
+        this.TongTien = TongTien;
     }
-
-    /**
-     * @return the NgayTao
-     */
-    public Date getNgayTao() {
-        return NgayTao;
-    }
-
-    /**
-     * @param NgayTao the NgayTao to set
-     */
-    public void setNgayTao(Date NgayTao) {
-        this.NgayTao = NgayTao;
-    }
+    
     
 }

@@ -14,7 +14,6 @@ public class KhachHang {
     private String HoTenKhach;
     private String DiaChiKhach;
     private String MaSoThue;
-    private String TaiKhoan;
 
     /**
      * @return the MSKH
@@ -72,18 +71,5 @@ public class KhachHang {
         this.MaSoThue = MaSoThue;
     }
 
-    /**
-     * @return the TaiKhoan
-     */
-    public String getTaiKhoan() {
-        return TaiKhoan;
-    }
-
-    /**
-     * @param TaiKhoan the TaiKhoan to set
-     */
-    public void setTaiKhoan(String TaiKhoan) {
-        this.TaiKhoan = TaiKhoan;
-    }
     
 }

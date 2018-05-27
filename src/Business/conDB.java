@@ -24,7 +24,7 @@ public class conDB {
     public static Connection getConnection() throws Exception{
         //load driver
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        String url = "jdbc:sqlserver://localhost:1433;databaseName=HTKTT;user=sa;password=123409";
+        String url = "jdbc:sqlserver://localhost:1433;databaseName=HTKTT;user=sa;password=123";
         try {			
 			connection = DriverManager.getConnection(url);
 		} catch (SQLException e) {
@@ -40,7 +40,7 @@ public class conDB {
 		try {
 			Connection connect = getConnection();
 
-			PreparedStatement pre = connect.prepareStatement(sql);
+			PreparedStatement pre = connect .prepareStatement(sql);
 			result = pre.executeQuery();
 		} catch (SQLException ex) {
 			System.out.println("Error" + ex.getMessage());

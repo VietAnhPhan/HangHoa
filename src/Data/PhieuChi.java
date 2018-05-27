@@ -9,13 +9,12 @@ import java.sql.Date;
 
 /**
  *
- * @author cuhoa_000
+ * @author HaiTruong
  */
-public class PhieuThuChi {
+public class PhieuChi {
     private String MaPC;
     private Date NgayChi;
     private float SoTienChi;
-    private int type;
     private String MSKH;
 
     /**
@@ -58,20 +57,6 @@ public class PhieuThuChi {
      */
     public void setSoTienChi(float SoTienChi) {
         this.SoTienChi = SoTienChi;
-    }
-
-    /**
-     * @return the type
-     */
-    public int getType() {
-        return type;
-    }
-
-    /**
-     * @param type the type to set
-     */
-    public void setType(int type) {
-        this.type = type;
     }
 
     /**

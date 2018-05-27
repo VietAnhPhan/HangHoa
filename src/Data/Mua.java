@@ -7,26 +7,26 @@ package Data;
 
 /**
  *
- * @author cuhoa_000
+ * @author HaiTruong
  */
-public class CTHD {
-    private String MaHD;
+public class Mua {
+    private String MaPN;
     private String MSHH;
     private int SoLuong;
-    private float DonGia;
+    private float DonGiaNhap;
 
     /**
-     * @return the MaHD
+     * @return the MaPN
      */
-    public String getMaHD() {
-        return MaHD;
+    public String getMaPN() {
+        return MaPN;
     }
 
     /**
-     * @param MaHD the MaHD to set
+     * @param MaPN the MaPN to set
      */
-    public void setMaHD(String MaHD) {
-        this.MaHD = MaHD;
+    public void setMaPN(String MaPN) {
+        this.MaPN = MaPN;
     }
 
     /**
@@ -58,17 +58,18 @@ public class CTHD {
     }
 
     /**
-     * @return the DonGia
+     * @return the DonGiaNhap
      */
-    public float getDonGia() {
-        return DonGia;
+    public float getDonGiaNhap() {
+        return DonGiaNhap;
     }
 
     /**
-     * @param DonGia the DonGia to set
+     * @param DonGiaNhap the DonGiaNhap to set
      */
-    public void setDonGia(float DonGia) {
-        this.DonGia = DonGia;
+    public void setDonGiaNhap(float DonGiaNhap) {
+        this.DonGiaNhap = DonGiaNhap;
     }
+    
     
 }
