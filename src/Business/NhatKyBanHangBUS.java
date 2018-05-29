@@ -32,8 +32,8 @@ public class NhatKyBanHangBUS {
             hd.setMSCH(rs.getString(4));
             hd.setMSKH(rs.getString(5));
             hd.setSoseri(rs.getString(6));
-            hd.setType(rs.getInt(7));
-            hd.setNgayTao(rs.getDate(8));
+            //hd.setType(rs.getInt(7));
+            //hd.setNgayTao(rs.getDate(8));
             dshd.add(hd);
         }
         con.close();
@@ -48,8 +48,8 @@ public class NhatKyBanHangBUS {
                 dshd.get(i).getMSCH(),
                 dshd.get(i).getMSKH(),
                 dshd.get(i).getSoseri(),
-                dshd.get(i).getType(),
-                dshd.get(i).getNgayTao()
+               // dshd.get(i).getType(),
+               // dshd.get(i).getNgayTao()
             });
         }
         

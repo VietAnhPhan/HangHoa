@@ -45,7 +45,27 @@ public class BUS_HoaDon {
         return arr;
     }
 
-    
+    public static ArrayList<HoaDon>getLastIDHoaDon(){
+        ArrayList<HoaDon> result = new ArrayList<>();
+        String query = "select TOP 1 MaHD FROM HoaDon order by MaHD  desc";
+
+        classData my = new classData();
+        try {
+            my.openConnect();
+            ResultSet rs = my.excuteQuery(query);
+            while (rs.next()) {
+                HoaDon HoaDon = new HoaDon();
+
+                HoaDon.setMaHD(rs.getString("MaHD"));
+                result.add(HoaDon);
+            }
+            my.close();
+        } catch (SQLException ex) {
+            my.displayError(ex);
+        }
+
+        return result;
+    }
     
     public static ArrayList<HoaDon> getInfoHoaDonByID(String MaHD) {
         ArrayList<HoaDon> result = new ArrayList<>();
