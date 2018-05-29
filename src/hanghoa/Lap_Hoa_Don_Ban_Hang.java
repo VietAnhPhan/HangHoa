@@ -756,7 +756,7 @@ public class Lap_Hoa_Don_Ban_Hang extends javax.swing.JFrame {
                     Ban.setDonGiaBan((float) Tb_HangHoa.getValueAt(i, 4));
                     kqHH = BUS_Ban.ThemBan(Ban.getMaHD(), Ban.getMSHH(), Ban.getSoLuong(), Ban.getDonGiaBan());
                 }
-                BUS_Report.ReportBanHang();//MaHD, t_TenCH.getText(), t_TenKH.getText(),t_DiaChiKH.getText(), t_SoHD.getText(), t_TaiKhoan.getText(), t_MaSoThueKH.getText(), t_LyDo.getText(), tD_NgayThanhToan.getDate(), t_SoSeri.getText(), Float.parseFloat(t_TySuatGTGT.getText()), t_Tong.getText(), t_TinhGTGT.getText(), t_TongTien.getText(), t_TienChu.getText());
+                BUS_Report.ReportBanHang(MaHD, t_TenCH.getText(), t_TenKH.getText(),t_DiaChiKH.getText(), t_SoHD.getText(), t_TaiKhoan.getText(), t_MaSoThueKH.getText(), t_LyDo.getText(), tD_NgayThanhToan.getDate(), t_SoSeri.getText(), Float.parseFloat(t_TySuatGTGT.getText()), t_Tong.getText(), t_TinhGTGT.getText(), t_TongTien.getText(), t_TienChu.getText());
                 if (kqHD == 1 && kqHH == 1) {
                     JOptionPane.showConfirmDialog(null, "Lưu thành công!", "Thông báo", -1, 1);
                 } else {
@@ -999,7 +999,7 @@ public class Lap_Hoa_Don_Ban_Hang extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        BUS_Report.ReportBanHang();
+        //BUS_Report.ReportBanHang1();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

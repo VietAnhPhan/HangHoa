@@ -21,38 +21,38 @@ import net.sf.jasperreports.view.JasperViewer;
  * @author HaiTruong
  */
 public class BUS_Report {
-    public static void ReportBanHang(){//String MaHD, String TenCH, String TenKH,String DiaChiKH, String SoHD, String TaiKhoan, String MaSoThueKH,
-            // String LyDo, Date NgayThanhToan, String SoSeri, float ThueSuat, String TongTien, String TienThue, String TongTong, String TienRaChu){
+    public static void ReportBanHang(String MaHD, String TenCH, String TenKH,String DiaChiKH, String SoHD, String TaiKhoan, String MaSoThueKH,
+             String LyDo, Date NgayThanhToan, String SoSeri, float ThueSuat, String TongTien, String TienThue, String TongTong, String TienRaChu){
         
-        String link ="D:\\GitHub\\HangHoa\\src\\Report\\report2.jrxml";
+        String link ="D:\\GitHub\\HangHoa\\src\\Report\\rpLapHoaDon.jrxml";
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             String database = "jdbc:sqlserver://localhost:1433;database=";
             String us = "sa";
             String pa = "123";
             
-            //Hashtable hash = new Hashtable();
-//                hash.put("MaHD", MaHD);
-//                hash.put("TenCH", TenCH);
-//                hash.put("TenKH", TenKH);
-//                hash.put("DiaChiKH", DiaChiKH);
-//                hash.put("SoHD", SoHD);
-//                hash.put("TaiKhoan", TaiKhoan);
-//                hash.put("MaSoThueKH", MaSoThueKH);
-//                hash.put("LyDo", LyDo);
-//                hash.put("NgayThanhToan", NgayThanhToan);
-//                hash.put("SoSeri", SoSeri);
-//                hash.put("ThueSuat", ThueSuat);
-//                hash.put("TongTien", TongTien);
-//                hash.put("TienThue", TienThue);
-//                hash.put("TongTong", TongTong);
-//                hash.put("TienRaChu", TienRaChu);
+            Hashtable hash = new Hashtable();
+                hash.put("MaHD", MaHD);
+                hash.put("TenCH", TenCH);
+                hash.put("TenKH", TenKH);
+                hash.put("DiaChiKH", DiaChiKH);
+                hash.put("SoHD", SoHD);
+                hash.put("TaiKhoan", TaiKhoan);
+                hash.put("MaSoThueKH", MaSoThueKH);
+                hash.put("LyDo", LyDo);
+                hash.put("NgayThanhToan", NgayThanhToan);
+                hash.put("SoSeri", SoSeri);
+                hash.put("ThueSuat", ThueSuat);
+                hash.put("TongTien", TongTien);
+                hash.put("TienThue", TienThue);
+                hash.put("TongTong", TongTong);
+                hash.put("TienRaChu", TienRaChu);
                 
             Connection con = DriverManager.getConnection(database, us, pa);
 
             JasperReport jr = JasperCompileManager.compileReport(link);
             //tao Jasper Print
-            JasperPrint jp = JasperFillManager.fillReport(jr, null, con);
+            JasperPrint jp = JasperFillManager.fillReport(jr, hash, con);
             //tao Jasper View   
             JasperViewer.viewReport(jp,false);
 
@@ -60,5 +60,7 @@ public class BUS_Report {
             e.printStackTrace();
         }
     }
-    
+    public static void main(String[] args) {
+       // ReportBanHang();
+    }
 }
