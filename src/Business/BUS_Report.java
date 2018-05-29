@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.Hashtable;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import net.sf.jasperreports.engine.JRStyle;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -27,7 +28,7 @@ public class BUS_Report {
         String link ="D:\\GitHub\\HangHoa\\src\\Report\\rpLapHoaDon.jrxml";
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            String database = "jdbc:sqlserver://localhost:1433;database=";
+            String database = "jdbc:sqlserver://localhost:1433;database=HTKT1";
             String us = "sa";
             String pa = "123";
             
@@ -53,6 +54,11 @@ public class BUS_Report {
             JasperReport jr = JasperCompileManager.compileReport(link);
             //tao Jasper Print
             JasperPrint jp = JasperFillManager.fillReport(jr, hash, con);
+            //de hien thi tieng Viet khi save PDF
+            JRStyle[] styles= jp.getStyles();
+            for(int i=0; i<styles.length; i++){
+                styles[i].setPdfFontName("C:/Windows/Fonts/arial.ttf");
+            }
             //tao Jasper View   
             JasperViewer.viewReport(jp,false);
 

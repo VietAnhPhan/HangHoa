@@ -41,7 +41,7 @@ public class classData {
    
      String hostName = "localhost";
      String sqlInstanceName = "HAITRUONG-PC";
-     String database = "HTKT";
+     String database = "HTKT1";
      String userName = "sa";
      String password = "123";
 

@@ -2,7 +2,9 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d5dfc8e5-ab44-4bdc-ab69-da926c645bf8">
 	<property name="ireport.zoom" value="1.610510000000001"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="580"/>
+	<property name="ireport.y" value="144"/>
+	<style name="Header" fontName="Times New Roman" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H"/>
+	<style name="Detail" pdfEncoding="Identity-H"/>
 	<parameter name="MaHD" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -22,16 +24,16 @@
 	<parameter name="TienRaChu" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
-     (Ban."SoLuong"*Ban."DonGiaBan") AS ThanhTien,
-     Ban."SoLuong" AS Ban_SoLuong,
-     Ban."DonGiaBan" AS Ban_DonGiaBan,
-     HangHoa."MSHH" AS HangHoa_MSHH,
-     HangHoa."TenHang" AS HangHoa_TenHang,
-     HangHoa."DonViTinh" AS HangHoa_DonViTinh
+     (SoLuong*DonGiaBan) AS ThanhTien,
+     SoLuong AS Ban_SoLuong,
+     DonGiaBan AS Ban_DonGiaBan,
+     HangHoa.MSHH AS HangHoa_MSHH,
+     TenHang AS HangHoa_TenHang,
+     DonViTinh AS HangHoa_DonViTinh
 FROM
-     "dbo"."HangHoa" HangHoa INNER JOIN "dbo"."Ban" Ban ON HangHoa."MSHH" = Ban."MSHH"
+    HangHoa INNER JOIN Ban ON HangHoa.MSHH = Ban.MSHH
 WHERE
-     Ban."MaHD" = $P{MaHD}]]>
+     MaHD =$P{MaHD}]]>
 	</queryString>
 	<field name="ThanhTien" class="java.math.BigDecimal"/>
 	<field name="Ban_SoLuong" class="java.lang.Integer"/>
@@ -47,48 +49,57 @@ WHERE
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="82" splitType="Stretch">
+		<band height="83" splitType="Stretch">
 			<staticText>
-				<reportElement x="175" y="31" width="169" height="24" forecolor="#FF0000" uuid="f3afdb01-3610-4188-a89b-9cd18bcd4456"/>
+				<reportElement style="Header" x="175" y="31" width="169" height="24" forecolor="#FF0000" uuid="f3afdb01-3610-4188-a89b-9cd18bcd4456"/>
 				<textElement>
-					<font size="18"/>
+					<font fontName="Times New Roman" size="18" pdfEncoding="Identity-H"/>
 				</textElement>
 				<text><![CDATA[Hóa Đơn Bán Hàng]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="1" y="0" width="143" height="16" uuid="84302380-9e86-433d-821e-60735526f34c"/>
-				<textElement textAlignment="Center">
-					<font size="10"/>
-				</textElement>
-				<text><![CDATA[CÔNG TY ĐẠI THÀNH PHÁT]]></text>
-			</staticText>
 			<textField>
-				<reportElement x="12" y="16" width="113" height="15" uuid="8e757ba7-f9a7-45d6-bc76-5de17e85c4f7"/>
+				<reportElement style="Detail" x="12" y="20" width="113" height="15" uuid="8e757ba7-f9a7-45d6-bc76-5de17e85c4f7"/>
 				<textElement textAlignment="Center">
-					<font size="8"/>
+					<font fontName="Times New Roman" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{TenCH}]]></textFieldExpression>
 			</textField>
-			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="206" y="55" width="100" height="20" uuid="8bc5e97a-050c-402b-bf8e-95634e07ef05"/>
+			<textField pattern="d/M/yyyy">
+				<reportElement x="194" y="55" width="100" height="20" uuid="8bc5e97a-050c-402b-bf8e-95634e07ef05"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="442" y="0" width="57" height="16" uuid="68426b01-e4ad-41f0-a36b-001f30389cc7"/>
-				<text><![CDATA[Số hóa đơn:]]></text>
-			</staticText>
 			<textField>
 				<reportElement x="499" y="0" width="51" height="16" uuid="681da5ea-6b7b-41d6-b10d-56e18654818d"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{SoHD}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="442" y="16" width="57" height="15" uuid="54ac84c1-2117-4782-b449-9f519f0ced3e"/>
+				<reportElement style="Detail" x="442" y="16" width="57" height="15" uuid="54ac84c1-2117-4782-b449-9f519f0ced3e"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<text><![CDATA[Tài khoản:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="499" y="16" width="51" height="15" uuid="66548387-02f0-4202-a7d6-3e926d1ec814"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{TaiKhoan}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement style="Header" x="1" y="0" width="139" height="20" uuid="5e463b3a-02f8-4799-a010-a1ab4e1667ba"/>
+				<text><![CDATA[CÔNG TY ĐẠI THÀNH PHÁT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Detail" x="436" y="0" width="63" height="16" uuid="019473f4-f502-40e9-abbd-18fa513f3b3b"/>
+				<text><![CDATA[Số hóa đơn:]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>
@@ -97,29 +108,38 @@ WHERE
 				<reportElement x="0" y="89" width="555" height="1" uuid="dd5a5f3f-a7e4-4ab5-abe5-2a4f9faab0d6"/>
 			</line>
 			<staticText>
-				<reportElement x="1" y="0" width="87" height="20" uuid="e696c900-f8eb-4d9e-9b76-777fc103ceea"/>
+				<reportElement style="Detail" x="1" y="0" width="87" height="20" uuid="e696c900-f8eb-4d9e-9b76-777fc103ceea"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<text><![CDATA[Họ tên khách hàng:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="88" y="0" width="108" height="20" uuid="8e248f90-d297-4686-8ff5-8b533a0098be"/>
+				<reportElement style="Detail" x="88" y="0" width="108" height="20" uuid="8e248f90-d297-4686-8ff5-8b533a0098be"/>
 				<textElement>
-					<font isItalic="true"/>
+					<font fontName="Times New Roman" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{TenKH}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="1" y="20" width="42" height="18" uuid="5684c202-44e2-40fa-b4cf-be815b3593c9"/>
+				<reportElement style="Detail" x="1" y="20" width="42" height="18" uuid="5684c202-44e2-40fa-b4cf-be815b3593c9"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<text><![CDATA[Địa chỉ:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="43" y="20" width="286" height="18" uuid="88d584c1-2561-480b-a9ee-1f242b79acf7"/>
+				<reportElement style="Detail" x="43" y="20" width="286" height="18" uuid="88d584c1-2561-480b-a9ee-1f242b79acf7"/>
 				<textElement>
-					<font isItalic="true"/>
+					<font fontName="Times New Roman" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{DiaChiKH}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="416" y="20" width="59" height="20" uuid="01c2c0bd-93f3-4903-991d-ebf53dcba941"/>
+				<reportElement style="Detail" x="416" y="20" width="59" height="20" uuid="01c2c0bd-93f3-4903-991d-ebf53dcba941"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<text><![CDATA[Mã số thuế: ]]></text>
 			</staticText>
 			<textField>
@@ -127,30 +147,45 @@ WHERE
 				<textFieldExpression><![CDATA[$P{MaSoThueKH}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="1" y="58" width="29" height="20" uuid="e47bb827-91a2-4fe9-a74c-cbb34607af56"/>
+				<reportElement style="Detail" x="1" y="58" width="29" height="20" uuid="e47bb827-91a2-4fe9-a74c-cbb34607af56"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<text><![CDATA[Lý do:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="30" y="58" width="251" height="20" uuid="4aad7523-9822-4024-a81f-48b5be403088"/>
+				<reportElement style="Detail" x="30" y="58" width="251" height="20" uuid="4aad7523-9822-4024-a81f-48b5be403088"/>
 				<textElement>
-					<font isItalic="true"/>
+					<font fontName="Times New Roman" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{LyDo}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="1" y="38" width="87" height="20" uuid="e45210e7-d680-4d38-9676-5d4ba5ad7be0"/>
+				<reportElement style="Detail" x="1" y="38" width="87" height="20" uuid="e45210e7-d680-4d38-9676-5d4ba5ad7be0"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<text><![CDATA[Ngày thanh toán:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="88" y="38" width="118" height="20" uuid="dfae9774-5db8-4dae-b93b-98960419f68c"/>
+				<reportElement style="Detail" x="88" y="38" width="118" height="20" uuid="dfae9774-5db8-4dae-b93b-98960419f68c"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{NgayThanhToan}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="272" y="38" width="34" height="20" uuid="eb3a22d5-9549-41b5-b289-a8801e47e31d"/>
+				<reportElement style="Detail" x="272" y="38" width="34" height="20" uuid="eb3a22d5-9549-41b5-b289-a8801e47e31d"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<text><![CDATA[Số seri:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="316" y="38" width="100" height="20" uuid="d0db1519-2cdf-4059-8d96-9b2f701b3a2c"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{SoSeri}]]></textFieldExpression>
 			</textField>
 		</band>
@@ -158,18 +193,24 @@ WHERE
 	<columnHeader>
 		<band height="30" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="29" height="30" forecolor="#3366FF" uuid="b45ce1bf-55ad-437e-a815-2d7b5bcca7dd"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<reportElement style="Detail" x="0" y="0" width="29" height="30" forecolor="#3366FF" uuid="b45ce1bf-55ad-437e-a815-2d7b5bcca7dd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<text><![CDATA[STT]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="463" y="0" width="92" height="30" forecolor="#3333FF" uuid="585e9577-d24d-42cd-8dd4-ecb3ad9f2773"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<reportElement style="Detail" x="463" y="0" width="92" height="30" forecolor="#3333FF" uuid="585e9577-d24d-42cd-8dd4-ecb3ad9f2773"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<text><![CDATA[Thành Tiền]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="104" y="0" width="123" height="30" forecolor="#3333FF" uuid="eab464d8-e323-4f46-a0a6-226eb0481b1c"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<reportElement style="Detail" x="104" y="0" width="123" height="30" forecolor="#3333FF" uuid="eab464d8-e323-4f46-a0a6-226eb0481b1c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<text><![CDATA[Tên Hàng]]></text>
 			</staticText>
 			<line>
@@ -182,8 +223,10 @@ WHERE
 				<reportElement x="103" y="0" width="1" height="30" uuid="93edce7f-8641-46a4-b655-61fd84209af5"/>
 			</line>
 			<staticText>
-				<reportElement x="29" y="0" width="74" height="30" forecolor="#3333FF" uuid="8ca74c2a-0e93-46a5-8c19-8ff4d98b8d49"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<reportElement style="Detail" x="29" y="0" width="74" height="30" forecolor="#3333FF" uuid="8ca74c2a-0e93-46a5-8c19-8ff4d98b8d49"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<text><![CDATA[Mã Hàng Hóa]]></text>
 			</staticText>
 			<line>
@@ -192,22 +235,21 @@ WHERE
 			<line>
 				<reportElement x="294" y="0" width="1" height="30" uuid="bf769cdd-f0d9-4479-9f2d-96e9cba8d04d"/>
 			</line>
-			<staticText>
-				<reportElement x="228" y="0" width="66" height="30" forecolor="#3333FF" uuid="41812ffb-3eb6-44b9-a6b3-97401b6d867b"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[Đơn Vị Tính]]></text>
-			</staticText>
 			<line>
 				<reportElement x="372" y="0" width="1" height="30" uuid="7f8d6fdb-b21a-4ee0-897d-1915f76e3478"/>
 			</line>
 			<staticText>
-				<reportElement x="295" y="0" width="77" height="30" forecolor="#3366FF" uuid="e5f69ebf-a58b-4d6e-a141-2518ae6b7c7a"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<reportElement style="Detail" x="295" y="0" width="77" height="30" forecolor="#3366FF" uuid="e5f69ebf-a58b-4d6e-a141-2518ae6b7c7a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<text><![CDATA[Số Lượng]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="373" y="0" width="89" height="30" forecolor="#3366FF" uuid="66b754de-4eb9-42fc-a83a-4048d99eba58"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<reportElement style="Detail" x="373" y="0" width="89" height="30" forecolor="#3366FF" uuid="66b754de-4eb9-42fc-a83a-4048d99eba58"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<text><![CDATA[Đơn Giá Bán]]></text>
 			</staticText>
 			<line>
@@ -216,43 +258,64 @@ WHERE
 			<line>
 				<reportElement x="462" y="0" width="1" height="30" uuid="0353783d-6711-44d7-99d5-426b1a483cfb"/>
 			</line>
+			<staticText>
+				<reportElement style="Detail" x="228" y="0" width="66" height="30" forecolor="#3333FF" uuid="41812ffb-3eb6-44b9-a6b3-97401b6d867b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Đơn Vị Tính]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="31" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="0" width="29" height="30" uuid="a7bcf0db-159e-4d65-9ad8-e256124e1f01"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="29" y="1" width="71" height="30" uuid="6db7916c-8f63-4664-a7a8-fd6e6b9cf8b8"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{HangHoa_MSHH}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="104" y="0" width="113" height="30" uuid="46283959-1c11-44bf-ae11-03bd64afcfec"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{HangHoa_TenHang}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="227" y="0" width="68" height="30" uuid="8109f8bf-dbf9-4036-9dce-7861c98179d9"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{HangHoa_DonViTinh}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="#,##0">
 				<reportElement x="295" y="1" width="78" height="30" uuid="ac26ffb2-ec89-497e-a329-b3d3673b8cf8"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{Ban_SoLuong}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="#,##0">
 				<reportElement x="373" y="0" width="79" height="30" uuid="0a318e1f-0d56-4693-b4c2-ffe350b6c4d7"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{Ban_DonGiaBan}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="#,##0">
 				<reportElement x="463" y="0" width="80" height="30" uuid="595286c2-aca3-45da-b286-e837ebf85e24"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{ThanhTien}]]></textFieldExpression>
 			</textField>
 			<line>
@@ -321,7 +384,9 @@ WHERE
 		<band height="58" splitType="Stretch">
 			<textField>
 				<reportElement x="362" y="0" width="80" height="20" uuid="4f7d9149-4573-49c7-a827-8aca239b7aba"/>
-				<textElement textAlignment="Right"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
@@ -348,8 +413,10 @@ WHERE
 				<reportElement x="-1" y="0" width="1" height="47" uuid="0bd7d2b9-965c-47ff-a5e4-649223b72e87"/>
 			</line>
 			<staticText>
-				<reportElement x="416" y="0" width="30" height="20" uuid="2648d0ce-f5f7-4971-9945-357d4ee0e3ed"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<reportElement style="Detail" x="416" y="0" width="30" height="20" uuid="2648d0ce-f5f7-4971-9945-357d4ee0e3ed"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<text><![CDATA[Cộng]]></text>
 			</staticText>
 			<line>
@@ -359,8 +426,10 @@ WHERE
 				<reportElement x="294" y="24" width="1" height="23" uuid="ab8cfbee-31f0-42b4-90b7-189613cd6f64"/>
 			</line>
 			<staticText>
-				<reportElement x="140" y="24" width="77" height="23" uuid="c6ed0368-1fa5-4724-8bc7-1aaeac883b0e"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<reportElement style="Detail" x="140" y="24" width="77" height="23" uuid="c6ed0368-1fa5-4724-8bc7-1aaeac883b0e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<text><![CDATA[Thuế suất GTGT]]></text>
 			</staticText>
 			<textField>
@@ -369,8 +438,10 @@ WHERE
 				<textFieldExpression><![CDATA[$P{ThueSuat}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="363" y="26" width="100" height="20" uuid="e6718c2c-9cad-46a5-a30d-769a8c5bd62e"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<reportElement style="Detail" x="363" y="26" width="100" height="20" uuid="e6718c2c-9cad-46a5-a30d-769a8c5bd62e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<text><![CDATA[Tiền thuế GTGT]]></text>
 			</staticText>
 			<textField>
@@ -384,8 +455,10 @@ WHERE
 				<textFieldExpression><![CDATA[$P{TienThue}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="311" y="48" width="136" height="20" uuid="cb1e3a3a-b48f-4b23-a562-4a8923e18beb"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<reportElement style="Detail" x="311" y="48" width="136" height="20" uuid="cb1e3a3a-b48f-4b23-a562-4a8923e18beb"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<text><![CDATA[Tổng cộng tiền thanh toán]]></text>
 			</staticText>
 			<textField>
@@ -394,40 +467,51 @@ WHERE
 				<textFieldExpression><![CDATA[$P{TongTong}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="1" y="68" width="53" height="20" uuid="1000ca6f-54f5-4a89-a1bd-61fed8b29e95"/>
-				<textElement verticalAlignment="Middle"/>
+				<reportElement style="Detail" x="1" y="68" width="53" height="20" uuid="1000ca6f-54f5-4a89-a1bd-61fed8b29e95"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<text><![CDATA[Bằng chữ: ]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="54" y="68" width="489" height="20" forecolor="#FF0000" uuid="30aa6289-4666-47dd-9713-7f8b93fcad79"/>
+				<reportElement style="Detail" x="54" y="68" width="489" height="20" forecolor="#FF0000" uuid="30aa6289-4666-47dd-9713-7f8b93fcad79"/>
 				<textElement verticalAlignment="Middle">
-					<font isItalic="true"/>
+					<font fontName="Times New Roman" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{TienRaChu}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="43" y="117" width="82" height="20" uuid="0b63bfd4-78cf-4ee0-9bc4-2f2bb9458424"/>
+				<reportElement style="Detail" x="43" y="117" width="82" height="20" uuid="0b63bfd4-78cf-4ee0-9bc4-2f2bb9458424"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<text><![CDATA[Người mua hàng]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="44" y="137" width="100" height="20" uuid="fbc9761c-ef4c-4c6d-906e-ee5b7a36f913"/>
+				<reportElement style="Detail" x="44" y="137" width="100" height="20" uuid="fbc9761c-ef4c-4c6d-906e-ee5b7a36f913"/>
 				<textElement>
-					<font isItalic="true"/>
+					<font fontName="Times New Roman" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[(Ký, ghi rõ họ tên)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="228" y="117" width="100" height="20" uuid="e5fe6397-2107-44bc-9b20-cbdfbf9265d8"/>
+				<reportElement style="Detail" x="228" y="117" width="100" height="20" uuid="e5fe6397-2107-44bc-9b20-cbdfbf9265d8"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<text><![CDATA[Kế toán]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="416" y="117" width="83" height="20" uuid="ade2b9b1-2630-4c06-83fd-594215c7baa7"/>
+				<reportElement style="Detail" x="416" y="117" width="83" height="20" uuid="ade2b9b1-2630-4c06-83fd-594215c7baa7"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<text><![CDATA[Người bán hàng]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="385" y="137" width="153" height="20" uuid="b791e0ea-9f23-4876-974c-728412e42c35"/>
+				<reportElement style="Detail" x="385" y="137" width="153" height="20" uuid="b791e0ea-9f23-4876-974c-728412e42c35"/>
 				<textElement>
-					<font isItalic="true"/>
+					<font fontName="Times New Roman" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[(Ký tên, đóng dấu, ghi rõ họ tên)]]></text>
 			</staticText>
