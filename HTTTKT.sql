@@ -1,6 +1,6 @@
-﻿Create DATABASE HTKT1
+﻿Create DATABASE HTKT
 GO
-use HTKT1
+use HTKT
 GO
 
 Create TABLE CuaHang(
@@ -65,7 +65,7 @@ Create TABLE Ban(
 	MaHD varchar(6),
 	MSHH varchar(6),
 	SoLuong int,
-	DonGiaBan float
+	DonGiaBan money
 	primary key(MaHD,MSHH),
 	foreign key(MaHD) references HoaDon(MaHD),
 	foreign key(MSHH) references HangHoa(MSHH)
@@ -286,23 +286,3 @@ GO
 Insert into dbo.PhieuChi values('',convert(datetime,'18-04-18 10:34:09 PM',5),7000000,'KH0002')
 GO
 
-Create PROC sp_statistic_avg(
-	@store_id	VARCHAR(6),
-	@date_from	DATE,
-	@date_to	DATE
-)
-AS
-BEGIN
-	SELECT Sell.MSHH,dbo.HangHoa.TenHang, Sell.count_sell, Purchase.avg_price, Sell.count_sell * Purchase.avg_price AS total_money 
-	FROM 
-		(SELECT Ban.MSHH,SUM(dbo.Ban.SoLuong) AS count_sell FROM dbo.HoaDon JOIN dbo.Ban ON Ban.MaHD = HoaDon.MaHD 
-		WHERE (dbo.HoaDon.NgayBan BETWEEN @date_from AND @date_to)  AND dbo.HoaDon.MSCH = @store_id
-		GROUP BY Ban.MSHH) AS Sell
-		JOIN
-		(SELECT Mua.MSHH,(SUM(SoLuong*DonGiaNhap)/SUM(SoLuong)) AS avg_price FROM dbo.PhieuNhap JOIN dbo.Mua ON Mua.MaPN = PhieuNhap.MaPN 
-		WHERE (PhieuNhap.NgayNhap BETWEEN @date_from AND @date_to) AND dbo.PhieuNhap.MSCH = @store_id
-		GROUP BY Mua.MSHH) AS Purchase
-		ON Sell.MSHH = Purchase.MSHH
-		JOIN 
-		dbo.HangHoa ON HangHoa.MSHH = Sell.MSHH
-END
