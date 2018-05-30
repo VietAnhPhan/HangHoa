@@ -14,7 +14,8 @@ import java.util.ArrayList;
  * @author HaiTruong
  */
 public class Gui_CuaHang extends javax.swing.JFrame {
-
+    public static String mschaa;
+    public static String tenchaa;
     /**
      * Creates new form Gui_CuaHang
      */
@@ -156,13 +157,15 @@ public class Gui_CuaHang extends javax.swing.JFrame {
         } 
         // TODO add your handling code here:
     }//GEN-LAST:event_cb_mschActionPerformed
-
+    
     private void btn_ChonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ChonActionPerformed
         Lap_Hoa_Don_Ban_Hang a = new Lap_Hoa_Don_Ban_Hang();
                 a.setVisible(true);
+                mschaa = cb_msch.getSelectedItem().toString();
+                tenchaa = t_TenCH.getText();
                 a.setData(cb_msch.getSelectedItem().toString(), t_TenCH.getText());
                 this.setVisible(false);
-                this.dispose();
+               // this.dispose();
                 // TODO add your handling code here:
     }//GEN-LAST:event_btn_ChonActionPerformed
 

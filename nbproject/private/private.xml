@@ -5,8 +5,15 @@
         <group>
             <file>file:/D:/GitHub/HangHoa/src/Business/NhatKyBanHangBUS.java</file>
             <file>file:/D:/GitHub/HangHoa/src/hanghoa/Lap_Hoa_Don_Ban_Hang.java</file>
+            <file>file:/D:/GitHub/HangHoa/src/Business/BUS_HangHoa.java</file>
+            <file>file:/D:/GitHub/HangHoa/src/Data/TaiKhoan.java</file>
+            <file>file:/D:/GitHub/HangHoa/src/Business/BUS_TaiKhoan.java</file>
+            <file>file:/D:/GitHub/HangHoa/src/Business/BUS_KhachHang.java</file>
+            <file>file:/D:/GitHub/HangHoa/src/hanghoa/Main.java</file>
             <file>file:/D:/GitHub/HangHoa/src/Data/classData.java</file>
             <file>file:/D:/GitHub/HangHoa/src/Business/BUS_Report.java</file>
+            <file>file:/D:/GitHub/HangHoa/src/hanghoa/Gui_TaiKhoan.java</file>
+            <file>file:/D:/GitHub/HangHoa/src/Report/rpLapHoaDon.jrxml</file>
         </group>
     </open-files>
 </project-private>

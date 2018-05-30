@@ -15,12 +15,12 @@ public class HoaDon {
     private String MaHD;
     private String SoHD;
     private Date NgayBan;
-    private String TaiKhoan;
     private String LyDo;
     private float ThueSuat;
     private Date NgayThanhToan;
     private String MSCH;
     private String MSKH;
+    private String MaTK;
     private String Soseri;
     private float TongTien;
 
@@ -64,20 +64,6 @@ public class HoaDon {
      */
     public void setNgayBan(Date NgayBan) {
         this.NgayBan = NgayBan;
-    }
-
-    /**
-     * @return the TaiKhoan
-     */
-    public String getTaiKhoan() {
-        return TaiKhoan;
-    }
-
-    /**
-     * @param TaiKhoan the TaiKhoan to set
-     */
-    public void setTaiKhoan(String TaiKhoan) {
-        this.TaiKhoan = TaiKhoan;
     }
 
     /**
@@ -151,6 +137,20 @@ public class HoaDon {
     }
 
     /**
+     * @return the MaTK
+     */
+    public String getMaTK() {
+        return MaTK;
+    }
+
+    /**
+     * @param MaTK the MaTK to set
+     */
+    public void setMaTK(String MaTK) {
+        this.MaTK = MaTK;
+    }
+
+    /**
      * @return the Soseri
      */
     public String getSoseri() {
@@ -177,6 +177,8 @@ public class HoaDon {
     public void setTongTien(float TongTien) {
         this.TongTien = TongTien;
     }
+
+    
     
     
 }

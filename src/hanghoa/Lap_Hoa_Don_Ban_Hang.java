@@ -10,10 +10,12 @@ import Business.BUS_HangHoa;
 import Business.BUS_HoaDon;
 import Business.BUS_KhachHang;
 import Business.BUS_Report;
+import Business.BUS_TaiKhoan;
 import Data.Ban;
 import Data.KhachHang;
 import Data.HangHoa;
 import Data.HoaDon;
+import Data.TaiKhoan;
 import java.awt.Component;
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -45,6 +47,7 @@ public class Lap_Hoa_Don_Ban_Hang extends javax.swing.JFrame {
     public Lap_Hoa_Don_Ban_Hang() {
         initComponents();
         loadDataHH();
+        loadDataTaiKhoan();
         it= this;   
         t_SoLuong.setDocument(new DigitsDocument());
         t_DonGia.setDocument(new DigitsDocument());
@@ -89,6 +92,13 @@ public class Lap_Hoa_Don_Ban_Hang extends javax.swing.JFrame {
         xx = BUS_HangHoa.loadInfo();
         for(int i = 0; i < xx.size(); i++)
             cb_MaHang.addItem(xx.get(i));
+    }
+    private void loadDataTaiKhoan(){
+        ArrayList<String> tk = new ArrayList<String>();
+        tk = BUS_TaiKhoan.loadInfo();
+        for(int i = 0; i<tk.size(); i++){
+            cb_TaiKhoan.addItem(tk.get(i));
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -139,7 +149,8 @@ public class Lap_Hoa_Don_Ban_Hang extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         t_TySuatGTGT = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
-        t_TaiKhoan = new javax.swing.JTextField();
+        t_TenTK = new javax.swing.JTextField();
+        cb_TaiKhoan = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jLabel27 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
@@ -363,9 +374,12 @@ public class Lap_Hoa_Don_Ban_Hang extends javax.swing.JFrame {
         jLabel21.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
         jLabel21.setText("Lý do");
 
-        t_TaiKhoan.addActionListener(new java.awt.event.ActionListener() {
+        t_TenTK.setEditable(false);
+        t_TenTK.setBackground(new java.awt.Color(204, 255, 255));
+
+        cb_TaiKhoan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                t_TaiKhoanActionPerformed(evt);
+                cb_TaiKhoanActionPerformed(evt);
             }
         });
 
@@ -377,13 +391,13 @@ public class Lap_Hoa_Don_Ban_Hang extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel20)
+                        .addComponent(jLabel22)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(t_SoSeri, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(74, 74, 74)
-                        .addComponent(jLabel21)
-                        .addGap(18, 18, 18)
-                        .addComponent(t_LyDo))
+                        .addComponent(cb_TaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(t_TenTK, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(t_LyDo, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
@@ -413,19 +427,22 @@ public class Lap_Hoa_Don_Ban_Hang extends javax.swing.JFrame {
                                 .addComponent(jLabel14)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(t_MaSoThueKH, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addGap(47, 47, 47)
-                                .addComponent(jLabel30)
-                                .addGap(18, 18, 18)
-                                .addComponent(tD_NgayBan, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(46, 46, 46)
-                                .addComponent(jLabel18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel21)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel30)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(tD_NgayBan, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(46, 46, 46)
+                                        .addComponent(jLabel18)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(tD_NgayThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)
-                                .addComponent(jLabel22)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(t_TaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(38, 38, 38)
+                                .addComponent(jLabel20)
+                                .addGap(18, 18, 18)
+                                .addComponent(t_SoSeri, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel19)
                                 .addGap(21, 21, 21)
@@ -453,9 +470,9 @@ public class Lap_Hoa_Don_Ban_Hang extends javax.swing.JFrame {
                     .addComponent(tD_NgayBan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel19)
-                        .addComponent(jLabel22)
-                        .addComponent(t_TaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(t_TySuatGTGT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(t_TySuatGTGT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel20)
+                        .addComponent(t_SoSeri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel28)
                         .addComponent(t_SoHD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -464,8 +481,9 @@ public class Lap_Hoa_Don_Ban_Hang extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel20)
-                        .addComponent(t_SoSeri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel22)
+                        .addComponent(t_TenTK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cb_TaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(t_LyDo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel21)))
@@ -703,7 +721,7 @@ public class Lap_Hoa_Don_Ban_Hang extends javax.swing.JFrame {
         //Lưu Hóa Đơn và Lưu Bán
         if (JOptionPane.showConfirmDialog(this, "Bạn có muốn lưu thông tin này?", "Confirm", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             try {
-                if(t_MaKH.getText().equals("")||t_SoHD.getText().equals("")||t_TaiKhoan.getText().equals("")||tD_NgayBan.getDate().equals(null)||tD_NgayThanhToan.getDate().equals(null)||t_TySuatGTGT.getText().equals("")||t_SoSeri.getText().equals("")){
+                if(t_MaCH.getText().equals("")||t_MaKH.getText().equals("")||t_SoHD.getText().equals("")||cb_TaiKhoan.getSelectedItem().toString().equals("")||tD_NgayBan.getDate().equals(null)||tD_NgayThanhToan.getDate().equals(null)||t_TySuatGTGT.getText().equals("")||t_SoSeri.getText().equals("")){
                     JOptionPane.showMessageDialog(frame, "Bạn chưa nhập đủ thông tin!Vui lòng nhập lại", "Inane error", JOptionPane.ERROR_MESSAGE);
                 }else{
                 HoaDon HoaDon = new HoaDon();
@@ -720,12 +738,12 @@ public class Lap_Hoa_Don_Ban_Hang extends javax.swing.JFrame {
                 utilDate1 = tD_NgayThanhToan.getDate();
                 java.sql.Date sqlDate_NgayThanhToan = new java.sql.Date(utilDate2.getTime());
                 HoaDon.setSoseri(t_SoSeri.getText());
-                HoaDon.setTaiKhoan(t_TaiKhoan.getText());
+                HoaDon.setMaTK(cb_TaiKhoan.getSelectedItem().toString());
                 HoaDon.setThueSuat(Float.parseFloat(t_TySuatGTGT.getText()));
                 float TongTong = TongTien +TongTien * Float.parseFloat(t_TySuatGTGT.getText());
                 HoaDon.setTongTien(TongTong);
                 
-                int kqHD = BUS_HoaDon.ThemHoaDon(HoaDon.getSoHD(), sqlDate_NgayBan, HoaDon.getTaiKhoan(), HoaDon.getLyDo(), HoaDon.getThueSuat(), sqlDate_NgayThanhToan, HoaDon.getMSCH(), HoaDon.getMSKH(), HoaDon.getSoseri(), HoaDon.getTongTien());
+                int kqHD = BUS_HoaDon.ThemHoaDon(HoaDon.getSoHD(), sqlDate_NgayBan,  HoaDon.getLyDo(), HoaDon.getThueSuat(), sqlDate_NgayThanhToan, HoaDon.getMSCH(), HoaDon.getMSKH(), HoaDon.getMaTK(),HoaDon.getSoseri(), HoaDon.getTongTien());
                 int rows = Tb_HangHoa.getRowCount();
                 ArrayList<HoaDon> listView;
                 listView = BUS_HoaDon.getLastIDHoaDon();
@@ -742,7 +760,7 @@ public class Lap_Hoa_Don_Ban_Hang extends javax.swing.JFrame {
                     Ban.setDonGiaBan((float) Tb_HangHoa.getValueAt(i, 4));
                     kqHH = BUS_Ban.ThemBan(Ban.getMaHD(), Ban.getMSHH(), Ban.getSoLuong(), Ban.getDonGiaBan());
                 }
-                BUS_Report.ReportBanHang(MaHD, t_TenCH.getText(), t_TenKH.getText(),t_DiaChiKH.getText(), t_SoHD.getText(), t_TaiKhoan.getText(), t_MaSoThueKH.getText(), t_LyDo.getText(), tD_NgayThanhToan.getDate(), t_SoSeri.getText(), Float.parseFloat(t_TySuatGTGT.getText()), t_Tong.getText(), t_TinhGTGT.getText(), t_TongTien.getText(), t_TienChu.getText());
+                BUS_Report.ReportBanHang(MaHD, t_TenCH.getText(), t_TenKH.getText(),t_DiaChiKH.getText(), t_SoHD.getText(), cb_TaiKhoan.getSelectedItem().toString(), t_MaSoThueKH.getText(), t_LyDo.getText(), tD_NgayThanhToan.getDate(), t_SoSeri.getText(), Float.parseFloat(t_TySuatGTGT.getText()), t_Tong.getText(), t_TinhGTGT.getText(), t_TongTien.getText(), t_TienChu.getText());
                 if (kqHD == 1 && kqHH == 1) {
                     JOptionPane.showConfirmDialog(null, "Lưu thành công!", "Thông báo", -1, 1);
                 } else {
@@ -771,10 +789,6 @@ public class Lap_Hoa_Don_Ban_Hang extends javax.swing.JFrame {
     private void t_SoLuongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_SoLuongActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_t_SoLuongActionPerformed
-
-    private void t_TaiKhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_TaiKhoanActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_t_TaiKhoanActionPerformed
 
     private void t_TySuatGTGTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_TySuatGTGTActionPerformed
         // TODO add your handling code here:
@@ -833,7 +847,8 @@ public class Lap_Hoa_Don_Ban_Hang extends javax.swing.JFrame {
         Gui_TaoKhachHang a = new Gui_TaoKhachHang();
                 a.setVisible(true);
                 this.setVisible(false);
-                this.dispose(); 
+                //this.dispose(); 
+              
     // TODO add your handling code here:
     }//GEN-LAST:event_btn_TaoKHActionPerformed
 
@@ -984,6 +999,20 @@ public class Lap_Hoa_Don_Ban_Hang extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_XoaHangActionPerformed
 
+    private void cb_TaiKhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_TaiKhoanActionPerformed
+        // TODO add your handling code here:
+        ArrayList<TaiKhoan> listView;
+        if (cb_TaiKhoan.getSelectedIndex() < 0) {
+            return;
+        }
+        //int index=jcbphongban.getSelectedIndex();
+        String MaTK = cb_TaiKhoan.getSelectedItem().toString();
+        listView = BUS_TaiKhoan.getInfoTaiKhoanByID(MaTK);
+        for (TaiKhoan p : listView) {
+            t_TenTK.setText(p.getTenTK().toString());
+        } 
+    }//GEN-LAST:event_cb_TaiKhoanActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1028,6 +1057,7 @@ public class Lap_Hoa_Don_Ban_Hang extends javax.swing.JFrame {
     private javax.swing.JButton btn_Thoat;
     private javax.swing.JButton btn_XoaHang;
     private javax.swing.JComboBox<String> cb_MaHang;
+    private javax.swing.JComboBox<String> cb_TaiKhoan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel14;
@@ -1065,10 +1095,10 @@ public class Lap_Hoa_Don_Ban_Hang extends javax.swing.JFrame {
     private javax.swing.JTextField t_SoHD;
     private javax.swing.JTextField t_SoLuong;
     private javax.swing.JTextField t_SoSeri;
-    private javax.swing.JTextField t_TaiKhoan;
     private javax.swing.JTextField t_TenCH;
     private javax.swing.JTextField t_TenHang;
     private javax.swing.JTextField t_TenKH;
+    private javax.swing.JTextField t_TenTK;
     private javax.swing.JTextField t_TienChu;
     private javax.swing.JTextField t_TinhGTGT;
     private javax.swing.JTextField t_Tong;

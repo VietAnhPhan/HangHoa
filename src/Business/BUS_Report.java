@@ -28,7 +28,7 @@ public class BUS_Report {
         String link ="D:\\GitHub\\HangHoa\\src\\Report\\rpLapHoaDon.jrxml";
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            String database = "jdbc:sqlserver://localhost:1433;database=HTKT1";
+            String database = "jdbc:sqlserver://localhost:1433;database=HTKT";
             String us = "sa";
             String pa = "123";
             

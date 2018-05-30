@@ -7,6 +7,8 @@ package hanghoa;
 
 import Business.BUS_KhachHang;
 import Data.KhachHang;
+import static hanghoa.Gui_CuaHang.mschaa;
+import static hanghoa.Gui_CuaHang.tenchaa;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -67,6 +69,10 @@ public class Gui_TaoKhachHang extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btn_LuuKH, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(239, 239, 239))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -81,19 +87,16 @@ public class Gui_TaoKhachHang extends javax.swing.JFrame {
                             .addComponent(t_MaSoThueKH, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(t_DiaChiKH, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(179, 179, 179)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(232, 232, 232)
-                        .addComponent(btn_LuuKH, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(186, 186, 186)
+                        .addComponent(jLabel1)))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(26, 26, 26)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(t_TenKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -105,9 +108,9 @@ public class Gui_TaoKhachHang extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(t_DiaChiKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(btn_LuuKH)
-                .addGap(30, 30, 30))
+                .addGap(29, 29, 29))
         );
 
         pack();
@@ -135,8 +138,8 @@ public class Gui_TaoKhachHang extends javax.swing.JFrame {
                            MaKH = p.getMSKH();
                            a.setData2(MaKH, t_TenKH.getText(), t_DiaChiKH.getText(), t_MaSoThueKH.getText());
                         }
-                        
-                        this.setVisible(false);
+                        a.setData(mschaa, tenchaa);
+                        this.setVisible(false); 
                         this.dispose();
                 } else {
                     JOptionPane.showConfirmDialog(null, "Thêm mới không thành công! Vui lòng thực hiện lại!", "Thông báo", -1, 2);
