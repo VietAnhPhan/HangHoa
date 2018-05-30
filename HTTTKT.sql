@@ -30,7 +30,8 @@ Create TABLE PhieuNhap(
 	NgayNhap DateTime,
 	ThueSuatMua float,
 	MSKH varchar(6) references KhachHang(MSKH),
-	MSCH varchar(6) references CuaHang(MSCH)
+	MSCH varchar(6) references CuaHang(MSCH),
+	MaTK varchar(15) references TaiKhoan(MaTK)
 )
 GO
 
@@ -55,6 +56,7 @@ Create TABLE HoaDon(
 	NgayThanhToan DateTime,
 	MSCH varchar(6) references CuaHang(MSCH),
 	MSKH varchar(6) references KhachHang(MSKH),
+	MaTK varchar(15) references TaiKhoan(MaTK),
 	Soseri varchar(100),
 	TongTien float
 	
@@ -86,6 +88,13 @@ Create TABLE PhieuChi(
 	NgayChi DateTime,
 	SoTienChi money,
 	MSKH varchar(6) references KhachHang(MSKH)
+)
+
+GO
+
+Create TABLE TaiKhoan(
+	MaTK varchar(15) primary key,
+	TenTK nvarchar(200)
 )
 
 GO
