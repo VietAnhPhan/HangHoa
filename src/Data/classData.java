@@ -40,10 +40,10 @@ public class classData {
          throws SQLException, ClassNotFoundException {
    
      String hostName = "localhost";
-     String sqlInstanceName = "HAITRUONG-PC";
-     String database = "HTKT1";
+     String sqlInstanceName = "ten nay lay trong sql "; //Ở chỗ properties tìm cái name r copy vô
+     String database = "HTKT";
      String userName = "sa";
-     String password = "123";
+     String password = "password do minh dat";
 
      return getSQLServerConnection(hostName, sqlInstanceName,
              database, userName, password);
